@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1> Edit Profile <h1>
+        <form action='' method='POST'>
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.username.label }}
+                {{ form.username(size=32) }}<br>
+                {% for error in form.username.errors %}
+                <span style="color:red">[{{error}}]</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.about_me.label }}
+                {{ form.about_me(cols=32,rows=4) }} <br>
+                {% for error in form.about_me.errors %}
+                <span style="color:red">{{ error }}</span>
+                {% endfor %}
+            </p>
+            <p>{{ form.submit() }}</p>
+        </form>
+        {% endblock %}
