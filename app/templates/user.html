@@ -5,10 +5,18 @@
         <td><img src="{{ user.avatar(128) }}"></td>
         <td>
             <h1>User: {{ user.username }}</h1>
-            {% if user.about_me %}<p>{{ user.about_me }}</p>{% endif %}
-            {% if user.last_seen %}<p>{{ user.last_seen }}<p>{% endif %}
+            {% if user.about_me %}
+            <p>{{ user.about_me }}</p>
+            {% endif %}
+            {% if user.last_seen %}
+            <p>{{ user.last_seen }}<p>
+                    {% endif %}
                     {% if user == current_user %}
                     <p><a href="{{ url_for('edit_profile') }}">Edit your profile</a></p>
+                    {% elif not surrent_user.is_following(user) %}
+                    <a href='{{ url_for("follow",username = user.username) }}'>Follow</a>
+                    {% else %}
+                    <a href='{{url_for("unfollow",username = user.username)}}'>Unfollow</a>
                     {% endif %}
         </td>
     </tr>
